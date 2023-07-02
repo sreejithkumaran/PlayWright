@@ -1,27 +1,26 @@
 const {test, expect} = require('@playwright/test');
-const { drop } = require('lodash');
 
 // https://demo.automationtesting.in/Register.html
 
-//https://demoqa.com/login
+// https://demoqa.com/login
 
-// test('First Playwright test', async ({browser}) => {
+test('First Playwright test', async ({browser}) => {
 
-//  const context = await browser.newContext()
-//  const page = await context.newPage();
-//  await page.goto("https://demoqa.com/automation-practice-form")
+ const context = await browser.newContext()
+ const page = await context.newPage();
+ await page.goto("https://demoqa.com/automation-practice-form")
 
-// })
+})
 
-// test('Page Playwright test', async ({page}) => {
+test('Page Playwright test', async ({page}) => {
 
-//     // const context = await browser.newContext()
-//     // const page = await context.newPage();
-//     await page.goto("https://demoqa.com/automation-practice-form")
-//     console.log(await page.title())
-//     await expect(page).toHaveTitle("DEMOQA")
+    // const context = await browser.newContext()
+    // const page = await context.newPage();
+    await page.goto("https://demoqa.com/automation-practice-form")
+    console.log(await page.title())
+    await expect(page).toHaveTitle("DEMOQA")
    
-//    })
+   })
 
 test('Login Page', async ({page}) => {
 
