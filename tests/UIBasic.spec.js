@@ -369,6 +369,8 @@ test.only('More Validations', async ({page}) => {
 
   await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 
+  
+
 })
 
 
