@@ -360,29 +360,30 @@ test("E2E scenario", async ({ page }) => {
   console.log("---- END ----");
 });
 
+
 test.only('More Validations', async ({page}) => { 
 
-    const displaytxt = page.locator('#displayed-text');
-    const hidebtn = page.locator('#hide-textbox');
-    const showbtn = page.locator('#show-textbox');
+  const displaytxt = page.locator('#displayed-text');
+  const hidebtn = page.locator('#hide-textbox');
+  const showbtn = page.locator('#show-textbox');
 
 
-  await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
+await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 
-  //toBeVisible() , toBeHidden()
-  await expect(displaytxt).toBeVisible();
-  await hidebtn.click();
-  await expect(displaytxt).toBeHidden();
+//toBeVisible() , toBeHidden()
+await expect(displaytxt).toBeVisible();
+await hidebtn.click();
+await expect(displaytxt).toBeHidden();
 
-  //alert
-  page.on('dialog',dialog =>  dialog.accept());
-  await page.locator('#alertbtn').click();
+//alert
+page.on('dialog',dialog =>  dialog.accept());
+await page.locator('#alertbtn').click();
 
- // Mouse over
+// Mouse over
 
 
 
- // Iframe
+// Iframe
 const framePage = page.frameLocator("#courses-iframe");
 await framePage.locator("li a[href='lifetime-access']:visible").click();
 const textCheck = await framePage.locator(".text h2").textContent();
@@ -390,5 +391,4 @@ console.log(textCheck.split(" ")[1]);
 
 
 })
-
 
