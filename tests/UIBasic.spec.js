@@ -361,7 +361,7 @@ test("E2E scenario", async ({ page }) => {
 });
 
 
-test.only('More Validations', async ({page}) => { 
+test('More Validations & Screen shot', async ({page}) => { 
 
   const displaytxt = page.locator('#displayed-text');
   const hidebtn = page.locator('#hide-textbox');
@@ -371,9 +371,16 @@ test.only('More Validations', async ({page}) => {
 await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 
 //toBeVisible() , toBeHidden()
+
+await showbtn.click();
 await expect(displaytxt).toBeVisible();
+//await expect(displaytxt).screenshot({path: 'partialScreenshot.png'});
+await page.locator('#displayed-text').screenshot({path:'partialScreenshot.png'})
+
 await hidebtn.click();
 await expect(displaytxt).toBeHidden();
+// take screen shot of page
+await page.screenshot({path: 'screenshot.png'});
 
 //alert
 page.on('dialog',dialog =>  dialog.accept());
@@ -392,3 +399,7 @@ console.log(textCheck.split(" ")[1]);
 
 })
 
+test.only('Visual Testing', async({page}) => {
+  await page.goto('https://google.com')
+  expect (await page.screenshot()).toMatchSnapshot('google.com');
+})
