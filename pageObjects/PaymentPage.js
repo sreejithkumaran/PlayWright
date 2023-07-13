@@ -11,33 +11,37 @@ class PaymentPage {
   
     }
 
-    async completePayment(){
+    async completePayment(details){
+
+    const paymentDetails = new Map(details);
+    console.log('paymentDetails size : '+paymentDetails.size)
+
     // Input Card Details
     await this.inputField.nth(1).fill("");
-    await this.inputField.nth(1).fill("4542 9931 9292 2293");
+    await this.inputField.nth(1).fill(paymentDetails.get('cardNo'));
   
     // Select MM/YY
-    await this.selectFieldDD.selectOption("10");
-    await this.selectFieldYY.selectOption("25");
+    await this.selectFieldDD.selectOption(paymentDetails.get('mm'));
+    await this.selectFieldYY.selectOption(paymentDetails.get('yy'));
   
     // Input CVV Code
-    await this.inputField.nth(2).fill("123");
+    await this.inputField.nth(2).fill(paymentDetails.get('cvv'));
   
     // Input Name on Card
-    await this.inputField.nth(3).fill("david thomas");
+    await this.inputField.nth(3).fill(paymentDetails.get('name'));
   
     // Validate Email
     //await expect(this.email_lbl).toHaveText("sreejith0607@yahoo.co.in");
 
    //Input Email
     await this.inputField.nth(5).fill("");
-    await this.inputField.nth(5).fill("sreejith0607@yahoo.co.in");
+    await this.inputField.nth(5).fill(paymentDetails.get('email'));
   
     // Select Country
     const optionSection = this.page.locator(".ta-results");
     const options = optionSection.locator("button");
   
-    await this.country.type("india", { delay: 500 });
+    await this.country.type(paymentDetails.get('country'), { delay: 500 });
   
     await optionSection.waitFor();
   

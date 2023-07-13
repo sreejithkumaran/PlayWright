@@ -1,5 +1,6 @@
 class OrderPage{
     constructor(page){
+        this.page = page;
         this.orderTable = page.locator(".table .ng-star-inserted");
         this.table = page.locator("tbody tr");
         this.placeOrderIds = page.locator(".table .ng-star-inserted th");
@@ -37,13 +38,16 @@ class OrderPage{
     }
 
     async orderDispalyed(orderId){
-        const isOrderDispalyed = await this.page
-      .locator(`th:has-text('${orderId}')`)
-      .isVisible();
+        const isOrderDispalyed = await this.getProductLocator(orderId)
     console.log(`(order) ${orderId} => ` + isOrderDispalyed);
     return isOrderDispalyed;
     }
 
+    getProductLocator(productName){
+        const isDispalyed =  this.page.locator("h3:has-text('"+productName+"')").isVisible();
+
+
+    }
 
 }
 
